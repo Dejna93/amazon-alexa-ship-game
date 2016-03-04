@@ -62,4 +62,16 @@ public class Ship {
         return true;
     }
 
+
+    public int[] getPosition() {
+        return position;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public int getSize() {
+        return size;
+    }
 }

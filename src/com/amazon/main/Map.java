@@ -39,8 +39,8 @@ public class Map {
 
 
     //placing a ship onto a map
-    public void addShip(PlayerEnum playerEnum, Ship ship) {
-
+    public void addShip(Ship ship) {
+        
     }
 
 
@@ -80,6 +80,10 @@ public class Map {
     //accessors:
     public CellEntity getSingleEntity(int sizeX, int sizeY) {
         return map[sizeX][sizeY];
+    }
+
+    public int getMapSize() {
+        return sizeX;
     }
 
 
