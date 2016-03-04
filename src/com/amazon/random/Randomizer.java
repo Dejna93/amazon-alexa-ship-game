@@ -21,8 +21,8 @@ public class Randomizer {
     }
 
     public Ship createShip() {
-        int positionX = random.nextInt((map.getMapSize() -0) + 1) + 0;
-        int positionY = random.nextInt((map.getMapSize() -0) + 1) + 0;
+        int positionX = random.nextInt((map.getMapSize()-2 -2) + 1) + 2;
+        int positionY = random.nextInt((map.getMapSize()-2 -2) + 1) + 2;
         Direction direction = new Direction(random.nextInt((4 -1) + 1) + 1);
 
         int[] positionArray = {positionX, positionY};
@@ -33,8 +33,8 @@ public class Randomizer {
 
 
     public Ship createShip(int size) {
-        int positionX = random.nextInt((map.getMapSize() -0) + 1) + 0;
-        int positionY = random.nextInt((map.getMapSize() -0) + 1) + 0;
+        int positionX = random.nextInt((map.getMapSize()-2 -2) + 1) + 2;
+        int positionY = random.nextInt((map.getMapSize()-2 -2) + 1) + 2;
         Direction direction = new Direction(random.nextInt((4 -1) + 1) + 1);
 
         int[] positionArray = {positionX, positionY};

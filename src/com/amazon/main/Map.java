@@ -20,13 +20,13 @@ public class Map {
     private int sizeY;
 
     private CellEntity[][] map;
-    private LinkedList<Coord> shipCoordinatesList;
+    private LinkedList<Ship> shipsList;
 
     public Map(PlayerEnum player, int sizeX, int sizeY) {
         this.player = player;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        shipCoordinatesList = new LinkedList<Coord>();
+        shipsList = new LinkedList<>();
         instantiateMap();
     }
 
@@ -44,6 +44,8 @@ public class Map {
 
 
     //placing a ship onto a map
+
+    //straszny burdel tutaj jest,  nie poletzam
     public void addShip(Ship ship) {
         LinkedList<Coord> shipCoordinates = new LinkedList<>();
 //        shipCoordinates.add(new Coord(ship.getPosition()));
@@ -83,6 +85,13 @@ public class Map {
 
         if (!validateShipPosition(shipCoordinates)) return;
 
+        for (Coord coord : shipCoordinates) {
+            if (player == PlayerEnum.PLAYER1)
+                map[coord.x()][coord.y()] = CellEntity.PLAYER1SHIP;
+            else (player == PlayerEnum.PLAYER2)
+                map[coord.x()][coord.y()] = CellEntity.PLAYER2SHIP;
+            shipsList.add(ship);
+        }
 
 
     }
@@ -92,12 +101,26 @@ public class Map {
     //(check if its not colliding with other ships, if it fits into boundaries of a map etc.)
     private boolean validateShipPosition(LinkedList<Coord> coords) {
         System.out.println("printing ship coordinates:");
-        for (Coord coord : coords)
-            System.out.print("(" + coord.x() + "," + coord.y() + ")||");
 
+        for (Coord coord : coords) {
+            System.out.print("(" + coord.x() + "," + coord.y() + ") -->");
 
+            if((coord.x() >= 0 && coord.x() < sizeX)
+                    && (coord.y() >= 0 && coord.y() < sizeY)) {
+                    if (map[coord.x()][coord.y()] == CellEntity.EMPTY)
+                        System.out.println("VALID");
+                    else {
+                        System.out.println("INVALID");
+                        return false;
+                    }
+            }
+            else {
+                System.out.println("INVALID");
+                return false;
+            }
+        }
 
-        return false;
+        return true;
     }
 
 

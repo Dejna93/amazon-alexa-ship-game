@@ -40,6 +40,7 @@ public class Main {
 
         Ship ship = randomizer.createShip(4);
         player1.getMap().addShip(ship);
+        player1.getMap().printAll();
 
 
     }
