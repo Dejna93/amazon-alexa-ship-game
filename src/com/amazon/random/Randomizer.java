@@ -4,6 +4,7 @@ import com.amazon.main.Map;
 import com.amazon.model.Ship;
 import com.amazon.utils.Direction;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -15,32 +16,59 @@ public class Randomizer {
     private Random random;
     private Map map;
 
+    //randomizer components:
+    private int positionX;
+    private int positionY;
+    private Direction direction;
+    private int[] positionArray;
+
+
     public Randomizer(Map map) {
         random = new Random();
         this.map = map;
     }
 
     public Ship createShip() {
-        int positionX = random.nextInt((map.getMapSize()-2 -2) + 1) + 2;
-        int positionY = random.nextInt((map.getMapSize()-2 -2) + 1) + 2;
-        Direction direction = new Direction(random.nextInt((4 -1) + 1) + 1);
-
-        int[] positionArray = {positionX, positionY};
-
+        assigningRandomValues();
 
         return new Ship(positionArray, direction, STANDARD_SIZE);
     }
 
 
     public Ship createShip(int size) {
-        int positionX = random.nextInt((map.getMapSize()-2 -2) + 1) + 2;
-        int positionY = random.nextInt((map.getMapSize()-2 -2) + 1) + 2;
-        Direction direction = new Direction(random.nextInt((4 -1) + 1) + 1);
-
-        int[] positionArray = {positionX, positionY};
-
+        assigningRandomValues();
 
         return new Ship(positionArray, direction, size);
+    }
+
+    public LinkedList<Ship> bulkCreateShip(){
+        LinkedList<Ship> createdShips = new LinkedList<>();
+
+        createdShips.add(createShip(5));
+        createdShips.add(createShip(5));
+        createdShips.add(createShip(4));
+        createdShips.add(createShip(4));
+        createdShips.add(createShip(4));
+        createdShips.add(createShip(3));
+        createdShips.add(createShip(3));
+        createdShips.add(createShip(3));
+        createdShips.add(createShip(3));
+        createdShips.add(createShip(3));
+        createdShips.add(createShip(2));
+        createdShips.add(createShip(2));
+        createdShips.add(createShip(2));
+        createdShips.add(createShip(2));
+        return createdShips;
+    }
+
+    private void assigningRandomValues() {
+        positionX = random.nextInt((map.getMapSize()-2 -1) + 1) + 1;
+        positionY = random.nextInt((map.getMapSize()-2 -1) + 1) + 1;
+        direction = new Direction(random.nextInt((4 -1) + 1) + 1);
+
+        positionArray = new int[2];
+        positionArray[0] = positionX;
+        positionArray[1] = positionY;
     }
 
 

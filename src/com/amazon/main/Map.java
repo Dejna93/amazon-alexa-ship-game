@@ -88,12 +88,16 @@ public class Map {
         for (Coord coord : shipCoordinates) {
             if (player == PlayerEnum.PLAYER1)
                 map[coord.x()][coord.y()] = CellEntity.PLAYER1SHIP;
-            else (player == PlayerEnum.PLAYER2)
+            else if (player == PlayerEnum.PLAYER2)
                 map[coord.x()][coord.y()] = CellEntity.PLAYER2SHIP;
             shipsList.add(ship);
         }
+    }
 
-
+    public void addShip(LinkedList<Ship> ships) {
+        for (Ship ship : ships) {
+            addShip(ship);
+        }
     }
 
 

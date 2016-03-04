@@ -38,8 +38,8 @@ public class Main {
         //randomly fill player 1 map:
         Randomizer randomizer = new Randomizer(player1Map);
 
-        Ship ship = randomizer.createShip(4);
-        player1.getMap().addShip(ship);
+//        Ship ship = randomizer.createShip(4);
+        player1.getMap().addShip(randomizer.bulkCreateShip());
         player1.getMap().printAll();
 
 
