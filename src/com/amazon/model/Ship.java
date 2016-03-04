@@ -31,14 +31,33 @@ public class Ship {
     public boolean isHit(int[] hitPossition){
 
         if(direction.direction == Direction.TOP){
-
+            //petla po y lecaca do gory
+            for(int i = hitPossition[1] ; i < hitPossition[1] + size  ; i++){
+                //sprawdzanie czy hit jest w pozycji statku
+                if(i == position[1]){
+                    return true;
+                }
+            }
+            return false;
         }
         if(direction.direction == Direction.BOT){
-
+            //petla po y lecaca do gory
+            for(int i = hitPossition[1] ; i < hitPossition[1] + size  ; i++){
+                //sprawdzanie czy hit jest w pozycji statku
+                if(i == position[1]){
+                    return true;
+                }
+            }
+            return false;
         }
         if(direction.direction == Direction.RIGHT){
-            
+
         }
+        if(direction.direction == Direction.LEFT){
+
+        }
+
+
 
         return true;
     }
