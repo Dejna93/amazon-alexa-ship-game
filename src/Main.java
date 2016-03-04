@@ -42,6 +42,9 @@ public class Main {
         player1.getMap().addShip(randomizer.bulkCreateShip());
         player1.getMap().printAll();
 
+        player2.getMap().addShip(randomizer.bulkCreateShip());
+        player2.getMap().printAll();
+
 
     }
 }

@@ -104,25 +104,22 @@ public class Map {
     //check if ship can be placed on a map
     //(check if its not colliding with other ships, if it fits into boundaries of a map etc.)
     private boolean validateShipPosition(LinkedList<Coord> coords) {
-        System.out.println("printing ship coordinates:");
+
 
         for (Coord coord : coords) {
-            System.out.print("(" + coord.x() + "," + coord.y() + ") -->");
-
             if((coord.x() >= 0 && coord.x() < sizeX)
                     && (coord.y() >= 0 && coord.y() < sizeY)) {
                     if (map[coord.x()][coord.y()] == CellEntity.EMPTY)
-                        System.out.println("VALID");
+                    {}
                     else {
-                        System.out.println("INVALID");
                         return false;
                     }
             }
             else {
-                System.out.println("INVALID");
                 return false;
             }
         }
+
 
         return true;
     }
@@ -144,7 +141,7 @@ public class Map {
 
     private char cellGetShorterID(CellEntity cell){
         switch(cell){
-            case EMPTY: return 'E';
+            case EMPTY: return ' ';
             case PLAYER1SHIP: return '1';
             case PLAYER2SHIP: return '2';
             default: return '!';
