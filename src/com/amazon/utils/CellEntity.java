@@ -6,5 +6,7 @@ package com.amazon.utils;
 public enum CellEntity {
     EMPTY,
     PLAYER1SHIP,
-    PLAYER2SHIP
+    PLAYER2SHIP,
+    HIT, //debug only
+    MISS //debug only
 }

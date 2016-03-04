@@ -1,5 +1,6 @@
 package com.amazon.main;
 
+import com.amazon.containers.Coord;
 import com.amazon.utils.PlayerEnum;
 
 import java.util.Scanner;
@@ -13,8 +14,13 @@ public class GameLoop {
     private String input;
     private char row, column;
     private int asciiRow, asciiColumn;
+    private Player player1;
+    private Player player2;
+    boolean isHit;
 
-    public GameLoop() {
+    public GameLoop(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
         gameLoop();
     }
 
@@ -38,26 +44,47 @@ public class GameLoop {
                 }
 
                 //shouldn't they be the other way around? first column, then row?
-                System.out.println("You've hit the position: " + "(" + row + "," + column + ") "
+                System.out.println("You've chosen the position: " + "(" + row + "," + column + ") "
                         + " [" + asciiRow + "," + asciiColumn + "]");
+
+                Coord actualCoord = new Coord(asciiRow, asciiColumn);
+                //NOW, CHECK IF INPUT IS VALID AND WITHIN MAP!
+                    //check out of border conditions
+                    //check providing a number lower than zero
+                    //fix capitalization
+
+
+                if(actualPlayer == PlayerEnum.PLAYER1)
+                    isHit = player2.getMap().checkHit(PlayerEnum.PLAYER1, actualCoord);
+                 else
+                    isHit = player1.getMap().checkHit(PlayerEnum.PLAYER2, actualCoord);
+
+
+                if(isHit)
+                    System.out.println("IT'S A HIT, you can have another move!");
+                else
+                    System.out.println("You missed, next player's turn.");
 
             }
 
-            if (actualPlayer == PlayerEnum.PLAYER1)
-                actualPlayer = PlayerEnum.PLAYER2;
-            else
-                actualPlayer = PlayerEnum.PLAYER1;
+            if (!isHit) {
+                if (actualPlayer == PlayerEnum.PLAYER1)
+                    actualPlayer = PlayerEnum.PLAYER2;
+                else
+                    actualPlayer = PlayerEnum.PLAYER1;
+            }
         }
     }
 
 
     private void captureInput(Scanner scanner) {
+        //input has to be uppercase
         input = scanner.next();
         row = input.charAt(0);
         column = input.charAt(1);
         asciiRow = row;
-        asciiRow = asciiRow - 48 - 16;
-        asciiColumn = column - 48;
+        asciiRow = asciiRow - 49 - 16;
+        asciiColumn = column - 49;
 
     }
 

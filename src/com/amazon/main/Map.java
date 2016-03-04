@@ -105,7 +105,7 @@ public class Map {
     //(check if its not colliding with other ships, if it fits into boundaries of a map etc.)
     private boolean validateShipPosition(LinkedList<Coord> coords) {
 
-
+        //this is totally fucked up
         for (Coord coord : coords) {
             if((coord.x() >= 0 && coord.x() < sizeX)
                     && (coord.y() >= 0 && coord.y() < sizeY)) {
@@ -141,11 +141,41 @@ public class Map {
 
     private char cellGetShorterID(CellEntity cell){
         switch(cell){
-            case EMPTY: return '~';
+            case EMPTY: return ' ';
             case PLAYER1SHIP: return '1';
             case PLAYER2SHIP: return '2';
+            case HIT: return 'X';   //debug only
+            case MISS: return 'O';  //debug only
             default: return '!';
         }
+    }
+
+    public boolean checkHit(PlayerEnum player, Coord coord) {
+
+
+        if (isHit(player, coord)) {
+            map[coord.x()][coord.y()] = CellEntity.HIT; //debug only
+            printAll();                                 //debug only
+            map[coord.x()][coord.y()] = CellEntity.EMPTY;
+            return true;
+        } else {
+            CellEntity previousCell = map[coord.x()][coord.y()]; //debug only
+            map[coord.x()][coord.y()] = CellEntity.MISS; //debug only
+            printAll();                                  //debug only
+            map[coord.x()][coord.y()] = previousCell;    //debug only
+        }
+
+        return false;
+    }
+
+
+    private boolean isHit(PlayerEnum player, Coord coord) {
+        if (
+                (map[coord.x()][coord.y()] == CellEntity.PLAYER1SHIP && player == PlayerEnum.PLAYER2)
+                ||(map[coord.x()][coord.y()] == CellEntity.PLAYER2SHIP && player == PlayerEnum.PLAYER1)
+                )
+            return true;
+        return false;
     }
 
 

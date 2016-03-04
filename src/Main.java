@@ -49,7 +49,7 @@ public class Main {
         player2.getMap().addShip(randomizer.bulkCreateShip());
         player2.getMap().printAll();
 
-        new GameLoop();
+        new GameLoop(player1, player2);
 
     }
 
