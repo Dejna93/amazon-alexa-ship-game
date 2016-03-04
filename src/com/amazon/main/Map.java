@@ -1,7 +1,7 @@
 package com.amazon.main;
 
 import com.amazon.model.Ship;
-import com.amazon.utils.MapEntity;
+import com.amazon.utils.CellEntity;
 import com.amazon.utils.PlayerEnum;
 import com.oracle.tools.packager.Log;
 
@@ -10,23 +10,26 @@ import com.oracle.tools.packager.Log;
  */
 public class Map {
 
+    private PlayerEnum player;
+
     private int sizeX;
     private int sizeY;
 
-    private MapEntity[][] map;
+    private CellEntity[][] map;
 
-    public Map(int sizeX, int sizeY) {
+    public Map(PlayerEnum player, int sizeX, int sizeY) {
+        this.player = player;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         instantiateMap();
     }
 
     private void instantiateMap() {
-        map = new MapEntity[sizeX][sizeY];
+        map = new CellEntity[sizeX][sizeY];
 
-        for (MapEntity[] row : map)
-            for (MapEntity cell : row)
-                cell = MapEntity.EMPTY;
+        for (CellEntity[] row : map)
+            for (CellEntity cell : row)
+                cell = CellEntity.EMPTY;
 
 
         Log.debug("map object instantiated, size: (" + sizeX + "," + sizeY + ")");
@@ -35,7 +38,7 @@ public class Map {
 
     //placing a ship onto a map
     public void addShip(PlayerEnum playerEnum, Ship ship) {
-        
+
     }
 
 
@@ -48,13 +51,45 @@ public class Map {
 
 
 
+    //printer:
+    public void printAll() {
+        System.out.println("\nPriting map: player " + player.toString() + "\n");
+
+        for (CellEntity[] row : this.map) {
+            System.out.print("[");
+
+            for (CellEntity cell : row) System.out.print(cellGetShorterID(cell));
+
+            System.out.println("]");
+        }
+    }
+
+    private char cellGetShorterID(CellEntity cell){
+        switch(cell){
+            case EMPTY: return 'E';
+            case PLAYER1SHIP: return '1';
+            case PLAYER2SHIP: return '2';
+            default: return '!';
+        }
+    }
+
+
+
     //accessors:
-    public MapEntity getSingleEntity(int sizeX, int sizeY) {
+    public CellEntity getSingleEntity(int sizeX, int sizeY) {
         return map[sizeX][sizeY];
     }
 
 
-    public MapEntity[][] getMap() {
+    public CellEntity[][] getMap() {
         return map;
+    }
+
+    public PlayerEnum getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(PlayerEnum player) {
+        this.player = player;
     }
 }

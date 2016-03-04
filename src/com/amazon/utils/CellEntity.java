@@ -3,7 +3,7 @@ package com.amazon.utils;
 /**
  * Created by Ciemek on 04/03/16.
  */
-public enum MapEntity {
+public enum CellEntity {
     EMPTY,
     PLAYER1SHIP,
     PLAYER2SHIP
