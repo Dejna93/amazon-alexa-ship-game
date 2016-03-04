@@ -3,7 +3,7 @@ package com.amazon.main;
 import com.amazon.model.Ship;
 import com.amazon.utils.CellEntity;
 import com.amazon.utils.PlayerEnum;
-import com.oracle.tools.packager.Log;
+
 
 
 /**
@@ -34,7 +34,7 @@ public class Map {
             }
         }
 
-        Log.debug("map object instantiated, size: (" + sizeX + "," + sizeY + ")");
+        System.out.println("map object instantiated, size: (" + sizeX + "," + sizeY + ")");
     }
 
 
