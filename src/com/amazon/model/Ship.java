@@ -27,7 +27,7 @@ public class Ship {
     public void update(){
 
     }
-    
+
 
 
     public int[] getPosition() {
