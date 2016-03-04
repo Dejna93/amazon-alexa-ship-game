@@ -141,12 +141,13 @@ public class Map {
 
     private char cellGetShorterID(CellEntity cell){
         switch(cell){
-            case EMPTY: return ' ';
+            case EMPTY: return '~';
             case PLAYER1SHIP: return '1';
             case PLAYER2SHIP: return '2';
             default: return '!';
         }
     }
+
 
 
 
