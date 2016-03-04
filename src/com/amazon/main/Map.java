@@ -5,6 +5,7 @@ import com.amazon.utils.CellEntity;
 import com.amazon.utils.PlayerEnum;
 import com.oracle.tools.packager.Log;
 
+
 /**
  * Created by Damian on 2016-03-04.
  */
@@ -27,10 +28,11 @@ public class Map {
     private void instantiateMap() {
         map = new CellEntity[sizeX][sizeY];
 
-        for (CellEntity[] row : map)
-            for (CellEntity cell : row)
-                cell = CellEntity.EMPTY;
-
+        for (int x=0; x<sizeX; ++x){
+            for (int y=0 ; y<sizeY; ++y) {
+                map[x][y] = CellEntity.EMPTY;
+            }
+        }
 
         Log.debug("map object instantiated, size: (" + sizeX + "," + sizeY + ")");
     }
