@@ -17,4 +17,5 @@ public class Direction {
     public Direction(int direction) {
         this.direction = direction;
     }
+
 }

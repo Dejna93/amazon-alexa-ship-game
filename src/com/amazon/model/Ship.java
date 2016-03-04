@@ -8,15 +8,9 @@ import com.amazon.utils.Direction;
 public class Ship {
 
     private int[] position = new int[2];
-
-    private Direction direction =new Direction(Direction.TOP);
-
+    private Direction direction = new Direction(Direction.TOP);
     private int size;
 
-
-    public Ship() {
-
-    }
 
     public Ship(int[] position, Direction direction, int size) {
         this.position = position;

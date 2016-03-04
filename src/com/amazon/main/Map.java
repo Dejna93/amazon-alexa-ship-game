@@ -1,9 +1,12 @@
 package com.amazon.main;
 
+import com.amazon.containers.Coord;
 import com.amazon.model.Ship;
 import com.amazon.utils.CellEntity;
 import com.amazon.utils.PlayerEnum;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 /**
@@ -17,11 +20,13 @@ public class Map {
     private int sizeY;
 
     private CellEntity[][] map;
+    private LinkedList<Coord> shipCoordinatesList;
 
     public Map(PlayerEnum player, int sizeX, int sizeY) {
         this.player = player;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
+        shipCoordinatesList = new LinkedList<Coord>();
         instantiateMap();
     }
 
@@ -40,13 +45,57 @@ public class Map {
 
     //placing a ship onto a map
     public void addShip(Ship ship) {
-        
+        LinkedList<Coord> shipCoordinates = new LinkedList<>();
+//        shipCoordinates.add(new Coord(ship.getPosition()));
+
+        switch(ship.getDirection().direction){
+            case 1:
+                for (int i=0; i < ship.getSize(); ++i){
+                    shipCoordinates.add(new Coord(
+                            ship.getPosition()[0],
+                            ship.getPosition()[1] + i));
+                }
+                break;
+            case 2:
+                for (int i=0; i < ship.getSize(); ++i){
+                    shipCoordinates.add(new Coord(
+                            ship.getPosition()[0],
+                            ship.getPosition()[1] - i));
+                }
+                break;
+            case 3:
+
+                for (int i=0; i < ship.getSize(); ++i){
+                    shipCoordinates.add(new Coord(
+                            ship.getPosition()[0] - i,
+                            ship.getPosition()[1]));
+                }
+                break;
+            case 4:
+
+                for (int i=0; i < ship.getSize(); ++i){
+                    shipCoordinates.add(new Coord(
+                            ship.getPosition()[0] + i,
+                            ship.getPosition()[1]));
+                }
+                break;
+        }
+
+        if (!validateShipPosition(shipCoordinates)) return;
+
+
+
     }
 
 
     //check if ship can be placed on a map
     //(check if its not colliding with other ships, if it fits into boundaries of a map etc.)
-    private boolean validateShipPosition(Ship ship) {
+    private boolean validateShipPosition(LinkedList<Coord> coords) {
+        System.out.println("printing ship coordinates:");
+        for (Coord coord : coords)
+            System.out.print("(" + coord.x() + "," + coord.y() + ")||");
+
+
 
         return false;
     }
