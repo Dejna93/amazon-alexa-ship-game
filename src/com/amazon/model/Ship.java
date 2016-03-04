@@ -1,7 +1,46 @@
 package com.amazon.model;
 
+import com.amazon.utils.Direction;
+
 /**
  * Created by Damian on 2016-03-04.
  */
 public class Ship {
+
+    private int[] position = new int[2];
+
+    private Direction direction =new Direction(Direction.TOP);
+
+    private int size;
+
+
+    public Ship() {
+
+    }
+
+    public Ship(int[] position, Direction direction, int size) {
+        this.position = position;
+        this.direction = direction;
+        this.size = size;
+    }
+
+    public void update(){
+
+    }
+
+    public boolean isHit(int[] hitPossition){
+
+        if(direction.direction == Direction.TOP){
+
+        }
+        if(direction.direction == Direction.BOT){
+
+        }
+        if(direction.direction == Direction.RIGHT){
+            
+        }
+
+        return true;
+    }
+
 }
